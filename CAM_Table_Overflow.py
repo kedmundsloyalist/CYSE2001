@@ -26,4 +26,4 @@ def overflowCAM(frames):
     sendp(frames, iface='tap0') #Send the frames, change tap0
 
 if __name__ == '__main__':
-    cam_overflow(generate_packets())
+    cam_overflow(generateFrames())

@@ -15,7 +15,7 @@ from scapy.all import *
 #Create all of our frames first so we can send them quickly. Our frame will layer a packet with random IPs with a frame with random MAC addresses.
 def generateFrames():
     frames = []
-    for i in xrange(1,10000):
+    for i in range(1,10000):
         frame  = Ether(src = RandMAC(),dst= RandMAC())/IP(src=RandIP(),dst=RandIP())
         frames.append(frame)
     return frames

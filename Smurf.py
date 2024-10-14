@@ -11,7 +11,7 @@ def address_spoofer():
     addr[2] = str(random.randrange(0,255))
     addr[3] = str(random.randrange(2,254))
     asmbld = addr[0]+d+addr[1]+d+addr[2]+d+addr[3]
-    print (aasmbld)
+    print (asmbld)
     return asmbld
 
 target = input("Enter the target to attack: ")

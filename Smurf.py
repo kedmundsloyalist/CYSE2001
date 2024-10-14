@@ -14,8 +14,8 @@ def address_spoofer():
     print (assemebled)
     return assemebled
 
-target = raw_input("Enter the target to attack: ")
-broadcast = raw_input("Enter the broadcast address to send to: ")
+target = input("Enter the target to attack: ")
+broadcast = input("Enter the broadcast address to send to: ")
 
 while True:
 

